@@ -1,4 +1,5 @@
-angular.module('healthyGulpAngularApp', ['ui.router'])
+
+angular.module('protoTable', ['ui.router', 'xeditable', 'ui.bootstrap'])
 
 .config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
@@ -9,7 +10,9 @@ angular.module('healthyGulpAngularApp', ['ui.router'])
 
             .state('home', {
                 url: '/',
-                templateUrl: 'components/home.html'
+                templateUrl: 'components/main.html',
+                controller: 'mainController'
             });
 
     }]);
+

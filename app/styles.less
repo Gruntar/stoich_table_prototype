@@ -1,0 +1,451 @@
+@import "styles/idbs-colors.less";
+@import "styles/typographics.less";
+@import "styles/colors.less";
+@import "styles/dimensions.less";
+@import "styles/icons.less";
+@import "styles/helpers.less";
+@import "styles/reset.less";
+
+.stoich-section {
+  border: 1px solid @main;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin: 10px 10px 0;
+  &__table {
+    display: block;
+    overflow: auto;
+    table-layout: fixed;
+    &_sticky {
+      flex-shrink: 0;
+      overflow-x: hidden;
+      td {
+        .component-prefix {
+          margin-left: 2px;
+          padding-top: 10px;
+        }
+      }
+    }
+    td {
+      border-right: 2px solid @mainLight85;
+      font: normal 13px/1.4 @font-roboto;
+      padding: 0 7px;
+    }
+    thead {
+      td {
+        background-color: @mainLight95;
+        color: @main;
+        font: 500 13px/26px @font-roboto;
+        padding-top: 3px;
+        white-space: nowrap;
+        span {
+          text-transform: capitalize;
+          &.text-uppercase {
+            text-transform: uppercase;
+          }
+          &.text-lowercase {
+            text-transform: lowercase;
+          }
+        }
+        em {
+          font-weight: normal;
+          font-style: normal
+        }
+        small {
+          font-size: 11px;
+          font-weight: normal;
+          font: normal 11px/25px @font-roboto; //different line-height to fix a "small" tag issue (increase height of the cell without a particular reason
+        }
+        button {
+          border: 0;
+          &.icon-lock_closed {
+            background: none;
+            color: @yellowDark20;
+            cursor: pointer;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+    tbody {
+      background-color: @white;
+      border-top: 4px solid @mainLight80;
+      td {
+        color: @mainDark20;
+        padding: 0;
+        vertical-align: top;
+        .btn-framed-info {
+          margin-right: 7px;
+        }
+      }
+      tr {
+        border-bottom: solid 1px @mainLight95;
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+    }
+    .table-padded-content {
+      padding: 11px 7px;
+      &_small {
+        padding: 6px 2px;
+      }
+    }
+    .table-margined-content {
+      margin: 11px 7px;
+    }
+    .elliptic {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: inherit;
+    }
+  }
+  &_reactants {
+    .section-colorizing(@redLight40, @orangeLight80);
+  }
+  &_agents {
+    .section-colorizing(@yellowLight20, @yellowLight80);
+  }
+  &_solvents {
+    .section-colorizing(@seaGreenLight20, @seaGreenLight80);
+  }
+  &_catalysts {
+    .section-colorizing(@blueLight20, @blueLight80);
+  }
+  &_products {
+    .section-colorizing(@lilacLight20, @lilacLight80);
+  }
+}
+
+.wrapper-flexible {
+  align-items: flex-start;
+  display: flex;
+  .flex-left {
+    margin-right: 2px;
+  }
+  .flex-right {
+    margin-left: auto;
+  }
+}
+
+.pad-standard {
+  padding: 5px;
+}
+
+// cell widths and alignment styles
+.stoich-section__table .cell {
+  &-fixed-component {
+    .width-with-minwidth(315px);
+  }
+  &-limit {
+    line-height: 0; // need to remove
+    text-align: center;
+    .width-with-minwidth(46px);
+  }
+  &-formula {
+    .width-with-minwidth(180px);
+    .no-sticky-limit & {
+      .width-with-minwidth(226px);
+    }
+  }
+  &-mw {
+    .width-with-minwidth(86px);
+  }
+  &-equiv {
+    .width-with-minwidth(79px);
+  }
+  &-mass {
+    .width-with-minwidth(70px);
+  }
+  &-volume {
+    .width-with-minwidth(86px);
+  }
+  &-purity {
+    .width-with-minwidth(73px);
+  }
+  &-quantifier {
+    .width-with-minwidth(76px);
+  }
+  &-n {
+    .width-with-minwidth(95px);
+  }
+  &-comment {
+    .width-with-minwidth(140px);
+  }
+  &-mass-exp {
+    .width-with-minwidth(110px);
+  }
+  &-mass-act {
+    .width-with-minwidth(90px);
+  }
+  &-n-exp {
+    .width-with-minwidth(80px);
+  }
+  &-n-act {
+    .width-with-minwidth(140px);
+  }
+  &-yield {
+    .width-with-minwidth(115px);
+  }
+
+}
+
+.stoich-section__table .cell {
+  &-fixed-component {
+    .btn-framed {
+      margin: 5px;
+      &.flex-right {
+        margin-left: auto;
+      }
+    }
+    .in-line-editable-wrapper {
+
+    }
+  }
+}
+
+// local mixins
+.section-colorizing(@border, @gradient-start) {
+  border-color: @border;
+  thead {
+    td.colorized {
+      background: linear-gradient(to right, @gradient-start, @mainLight95);
+      border-left: 3px solid @border;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.width-with-minwidth(@width) {
+  min-width: @width;
+  width: @width;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+// inline editing cells styles
+.in-line-editable {
+  .text-right & {
+    text-align: right;
+  }
+  &-wrapper {
+    height: 40px;
+    .stoich-section__table_sticky .wrapper-flexible & {
+      display: flex;
+      flex-grow: 1;
+    }
+    .view-element {
+      border: none;
+      display: block;
+      height: 100%;
+      .stoich-section__table_sticky & {
+        width: 212px;
+      }
+    }
+    .editable-dropdown {
+      display: block;
+      height: 100%;
+      padding: 11px 7px;
+      width: 100%;
+    }
+    .editable-click {
+      color: @main;
+    }
+    .editable-wrap {
+      display: block;
+      .stoich-section__table_sticky & {
+        flex-grow: 1;
+        padding-right: 5px;
+        width: 212px;
+      }
+      .editable-controls > input {
+        background-color: @blueLight80;
+        border: none;
+        outline: 1px solid @mainDark20;
+        height: 40px;
+        padding: 0 7px 1px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// buttons
+.btn {
+  outline: none !important;
+}
+.btn-framed {
+  background: rgba(0, 0, 0, 0.02);
+  color: @blueDark40;
+
+  border: 1px solid @blueLight40;
+  border-radius: 3px;
+
+  line-height: 20px;
+  padding: 5px 10px;
+
+  text-align: left;
+  font-size: 13px;
+
+  > .icon {
+    color: @blueDark20;
+    vertical-align: -2px;
+    font-size: 16px;
+
+    &:not(:last-child) {
+      margin-right: 2px;
+    }
+  }
+
+  &:focus {
+    color: @blueDark40; // same as neutral, overrides .btn:focus
+
+    background: rgba(0, 0, 0, 0.06); // -2 darkness step (x0.02)
+    border-color: @blue; // -2 step
+
+    > .icon {
+      color: @blueDark40; // same as neutral
+    }
+  }
+  &:hover {
+    color: @blueDark40; // same as neutral
+
+    background: @blueLight80; // ~ -1 step
+    border-color: @blueDark20; // -3 step
+
+    > .icon {
+      color: @blueDark20; // same as neutral
+    }
+  }
+  &:active {
+    color: @ewb-white-color;
+    background: @blue;
+    border-color: @blue; // =: background
+
+    > .icon {
+      color: @ewb-white-color;
+    }
+  }
+  &:hover:active { // :active -20
+    color: @blueLight80;
+    background: @blueDark20;
+    border-color: @blueDark20;
+
+    > .icon {
+      color: @blueLight80;
+    }
+  }
+  &-no-text {
+    color: @blueDark20;
+    height: 30px;
+    padding: 0 6px;
+    &.btn-options {
+      font-size: 16px;
+    }
+    &.btn-info {
+      font-size: 8px;
+      padding-top: 7px;
+    }
+  }
+}
+
+.btn-rounded {
+  background-color: transparent;
+  border: 1px solid @mainLight80;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 5px 0 rgba(227, 227, 227, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  height: 30px;
+  overflow: hidden;
+  padding: 0;
+  width: 30px;
+
+  .icon-tick {
+    background: @mantisGreenDark40;
+    border-radius: 50%;
+    color: @white;
+    font-size: 12px;
+    padding-top: 5px;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.btn-clean {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: @blueDark40;
+  font: normal 13px/26px @font-roboto;
+  padding: 0;
+  .icon {
+    color: @blueDark20;
+    font-size: 12px;
+    margin-right: 2px;
+  }
+  &:hover, &:focus, &:focus:hover,
+  &:active, &:active:hover, &:active:focus:hover,
+  &:active:focus {
+    box-shadow: none;
+    color: @blue;
+    .icon {
+      color: @blue;
+    }
+  }
+  &:focus:not(:hover) {
+    box-shadow: none;
+    color: @blueDark40;
+    .icon {
+      color: @blueDark20;
+    }
+  }
+}
+
+.dropdown-menu {
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0 10px 0 rgba(67, 74, 84, 0.5);
+  margin: -1px 0 0 1px;
+  padding: 0;
+  > li {
+    border-bottom: 1px solid @mainLight90;
+    height: 35px;
+    > a {
+      font-size: 13px;
+      padding: 8px 20px;
+      &:hover {
+        background: linear-gradient(180deg, rgba(240, 245, 255, 0.5) 0%, rgba(220, 232, 255, 0.5) 100%);
+        color: @blueDark20;
+      }
+    }
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
+
+// layout types
+.layout-type {
+  &-short {
+    .in-line-editable-wrapper {
+      overflow: hidden;
+      width: inherit;
+    }
+    .value-container {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: inherit;
+    }
+  }
+  &-full {
+
+  }
+}

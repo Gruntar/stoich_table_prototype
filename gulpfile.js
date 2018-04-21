@@ -10,8 +10,9 @@ var Q = require('q');
 
 var paths = {
     scripts: 'app/**/*.js',
-    styles: ['./app/**/*.css', './app/**/*.scss'],
+    styles: ['./app/**/*.css', './app/styles.less'],
     images: './images/**/*',
+    fonts: './app/styles/fonts/**/*',
     index: './app/index.html',
     partials: ['app/**/*.html', '!app/index.html'],
     distDev: './dist.dev',
@@ -97,20 +98,20 @@ pipes.scriptedPartials = function() {
         .pipe(plugins.htmlhint.failReporter())
         .pipe(plugins.htmlmin({collapseWhitespace: true, removeComments: true}))
         .pipe(plugins.ngHtml2js({
-            moduleName: "healthyGulpAngularApp"
+            moduleName: "protoTable"
         }));
 };
 
 pipes.builtStylesDev = function() {
     return gulp.src(paths.styles)
-        .pipe(plugins.sass())
+        .pipe(plugins.less())
         .pipe(gulp.dest(paths.distDev));
 };
 
 pipes.builtStylesProd = function() {
     return gulp.src(paths.styles)
         .pipe(plugins.sourcemaps.init())
-            .pipe(plugins.sass())
+            .pipe(plugins.less())
             .pipe(plugins.minifyCss())
         .pipe(plugins.sourcemaps.write())
         .pipe(pipes.minifiedFileName())
@@ -125,6 +126,16 @@ pipes.processedImagesDev = function() {
 pipes.processedImagesProd = function() {
     return gulp.src(paths.images)
         .pipe(gulp.dest(paths.distProd + '/images/'));
+};
+
+pipes.processedFontsDev = function() {
+    return gulp.src(paths.fonts)
+        .pipe(gulp.dest(paths.distDev + '/styles/fonts/'));
+};
+
+pipes.processedFontsProd = function() {
+    return gulp.src(paths.images)
+        .pipe(gulp.dest(paths.distProd + '/styles/fonts/'));
 };
 
 pipes.validatedIndex = function() {
@@ -167,11 +178,11 @@ pipes.builtIndexProd = function() {
 };
 
 pipes.builtAppDev = function() {
-    return es.merge(pipes.builtIndexDev(), pipes.builtPartialsDev(), pipes.processedImagesDev());
+    return es.merge(pipes.builtIndexDev(), pipes.builtPartialsDev(), pipes.processedImagesDev(), pipes.processedFontsDev());
 };
 
 pipes.builtAppProd = function() {
-    return es.merge(pipes.builtIndexProd(), pipes.processedImagesProd());
+    return es.merge(pipes.builtIndexProd(), pipes.processedImagesProd(), pipes.processedFontsProd());
 };
 
 // == TASKS ========

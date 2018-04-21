@@ -1,0 +1,60 @@
+/*
+ * Copyright (C) 1993-2016 ID Business Solutions Limited
+ * All rights reserved
+ */
+
+// Fonts
+@icon-font-size: 1.5em; // font multipliers
+@text-editor-font-size: 12px;
+@table-font-size: 12px;
+
+@default-widget-line-height: 18px;
+@default-font-size: 13px;
+@default-line-height-ratio: @default-widget-line-height / @default-font-size;
+
+@preview-font-size:11px;
+
+// Indentations
+@sticky-top-panel-height: 45px;
+@additional-top-panel-height: 50px;
+@sticky-top-panel-padding: 10px 20px 5px;
+
+@_indent-small: 5px;
+@_indent-medium: 10px;
+@_indent-large: 20px;
+
+@indent-small: @_indent-small;
+@indent-small-ends: @_indent-small 0;
+@indent-small-edges: 0 @_indent-small;
+
+@indent-medium: @_indent-medium;
+@indent-medium-ends: @_indent-medium 0;
+@indent-medium-edges: 0 @_indent-medium;
+
+@indent-large: @_indent-large;
+@indent-large-ends: @_indent-large 0;
+@indent-large-edges: 0 @_indent-large;
+
+// == Combinations
+@indent-small-small: @indent-small;
+@indent-small-medium: @_indent-small @_indent-medium;
+@indent-small-large: @_indent-small @_indent-large;
+@indent-medium-small: @_indent-medium @_indent-small;
+@indent-medium-medium: @indent-medium;
+@indent-medium-large: @_indent-medium @_indent-large;
+@indent-large-small: @_indent-large @_indent-small;
+@indent-large-medium: @_indent-large @_indent-medium;
+@indent-large-large: @indent-large;
+
+//-- context drop down menu--
+@ewb-context-menu-padding: 10px 25px;
+
+//-- content modal UI
+@ewb-content-modal-footer-padding: @indent-large;
+@ewb-content-modal-header-padding: @indent-medium-large;
+@ewb-content-modal-body-padding: 0 @_indent-large @_indent-medium;
+
+//--section min width
+@ewb-section-min-width: 926px;
+//--preview section min width
+@ewb-registration-section-min-width: 620px;
