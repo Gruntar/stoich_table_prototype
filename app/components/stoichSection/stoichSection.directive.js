@@ -11,7 +11,9 @@ function StoichSectionDirective() {
         },
         controllerAs: "vm",
         controller: 'stoichSectionController',
-        templateUrl: "components/stoichSection/stoichSection.html"
+        templateUrl: "components/stoichSection/stoichSection.html",
+        link: function(scope, el, attrs) {
+        }
     };
 }
 

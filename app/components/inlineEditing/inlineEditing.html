@@ -1,7 +1,10 @@
-<span uib-dropdown dropdown-append-to-body on-toggle="vm.toggled(open)" class="view-element"
+
+    <span uib-dropdown dropdown-append-to-body on-toggle="vm.toggled(open)" class="view-element"
       buttons="no"
       editable-text="componentData.value"
       e-class="in-line-editable"
+      e-clickable="true"
+      edit-disabled="editDisabled"
       e-ng-focus="vm.setBehavior($form)">
     <span class="editable-dropdown value-container" uib-dropdown-toggle>
         {{componentData.value || ''}} {{componentData.value ? vm.unit : ''}}
@@ -12,3 +15,4 @@
         </li>
     </ul>
 </span>
+

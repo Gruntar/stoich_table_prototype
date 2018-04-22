@@ -1,5 +1,5 @@
-<section class="stoich-section stoich-section_reactants">
-    <table class="stoich-section__table stoich-section__table_sticky layout-type-short">
+<section class="stoich-section stoich-section_reactants" keyboard-navigation>
+    <table class="stoich-section__table stoich-section__table_sticky layout-type-short" data-table-type="sticky">
         <colgroup>
             <col class="cell-fixed-component">
             <col class="cell-limit">
@@ -16,8 +16,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="stickyRow in tableData.sticky">
-            <td class="cell-fixed-component">
+        <tr ng-repeat="stickyRow in tableData.sticky" tabindex="{{$index}}">
+            <td class="cell-fixed-component" tabindex="0">
                 <div class="wrapper-flexible">
                     <button class="btn btn-framed btn-framed-no-text btn-info flex-left">
                         <i class="icon-stack icon-stack-fw">
@@ -34,7 +34,7 @@
                     </button>
                 </div>
             </td>
-            <td class="cell-limit">
+            <td class="cell-limit" tabindex="0">
                 <div class="pad-standard">
                     <button class="btn-rounded" ng-click="potHasLimit = !potHasLimit">
                         <i ng-if="potHasLimit" class="icon icon-tick"></i>
@@ -44,7 +44,7 @@
         </tr>
         </tbody>
     </table>
-    <table class="stoich-section__table layout-type-short">
+    <table class="stoich-section__table layout-type-short" data-table-type="normal">
         <!--this colgroup is a must to make the table static-->
         <colgroup>
             <col ng-repeat="(cellName, cellProperties) in tableData.body[0]" class="cell-{{cellName}}">
@@ -58,8 +58,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="bodyRow in tableData.body">
-            <td ng-repeat="(cellName, cellProperties) in bodyRow" class="cell-{{cellName}}">
+        <tr ng-repeat="bodyRow in tableData.body" tabindex="{{$index}}">
+            <td ng-repeat="(cellName, cellProperties) in bodyRow" class="cell-{{cellName}}" tabindex="{{$index}}">
                 <div class="in-line-editable-wrapper {{cellProperties.style.classes.join(' ')}}">
                     <inline-editing-directive component-data="cellProperties"></inline-editing-directive>
                 </div>
